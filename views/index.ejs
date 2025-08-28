@@ -1,0 +1,62 @@
+<%- include('partials/header') %>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div class="spinner"></div>
+    <p>Analyzing your document...</p>
+</div>
+
+<div class="app-container">
+    <header class="app-header">
+        <h1>ClauseWise</h1>
+        <p>Advanced Intelligence for Legal Professionals</p>
+    </header>
+    <main class="main-content">
+        <div class="home-page-content">
+            <h2 style="font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 32px;">Our Core AI Capabilities</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                    </div>
+                    <h3>Clause Simplification</h3>
+                    <p>Translates complex legal jargon into simple, understandable language.</p>
+                </div>
+                <div class="feature-card">
+                     <div class="feature-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h3>Risk Detection</h3>
+                    <p>Identifies potentially harmful, unusual, or unfair clauses in your contract.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-2 1-4 1-6 0"></path><path d="m2 16 3-8 3 8c-2 1-4 1-6 0"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2"></path><path d="M19 7h2"></path></svg>
+                    </div>
+                    <h3>Fairness Analysis</h3>
+                    <p>Scores the contract's balance and highlights which party is favored.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg>
+                    </div>
+                    <h3>AI-Powered Q&A</h3>
+                    <p>Ask questions about your document in plain English and get instant answers.</p>
+                </div>
+            </div>
+            <div class="upload-section">
+                <form id="upload-form" action="/analyze" method="POST" enctype="multipart/form-data">
+                    <h3>Get Started</h3>
+                    <p>Ready to analyze your document? Upload it now to unlock these features.</p>
+                    <label for="file-upload" class="upload-button">Upload Document</label>
+                    <input id="file-upload" name="contract" type="file" class="sr-only">
+                    <% if (error) { %>
+                        <p class="error-message"><%= error %></p>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,75 @@
+<%- include('partials/header') %>
+
+<div class="dashboard-container">
+    <header class="dashboard-header">
+        <div class="dashboard-header-title">
+            <div><!-- Logo Icon SVG here --></div>
+            <div>
+                <h1>ClauseWise Analysis</h1>
+                <p><%= fileName %></p>
+            </div>
+        </div>
+        <a href="/" class="upload-button" style="padding: 8px 16px; text-decoration: none;">Analyze New Document</a>
+    </header>
+    <div class="dashboard-body">
+        <nav class="dashboard-nav">
+            <ul>
+                <li><button class="tab-button active" data-tab="simplify">Simplify</button></li>
+                <li><button class="tab-button" data-tab="risks">Risks</button></li>
+                <li><button class="tab-button" data-tab="fairness">Fairness</button></li>
+                <li><button class="tab-button" data-tab="lawyer">AI Lawyer</button></li>
+            </ul>
+        </nav>
+        <main class="dashboard-main">
+            <!-- Simplified Clauses Tab -->
+            <div id="simplify" class="tab-content">
+                <h3>Simplified Clauses</h3>
+                <% simplifiedClauses.forEach(clause => { %>
+                    <div class="accordion-item">
+                        <button class="accordion-header"><%= clause.simplified %></button>
+                        <div class="accordion-content">
+                            <h4>Explanation</h4>
+                            <p><%= clause.explanation %></p>
+                            <h4>Original Clause</h4>
+                            <p><em>"<%= clause.original %>"</em></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <!-- Risks Tab -->
+            <div id="risks" class="tab-content" style="display:none;">
+                <h3>Risk & Anomaly Detection</h3>
+                <% risks.forEach(risk => { %>
+                    <div class="risk-card risk-<%= risk.severity.toLowerCase() %>">
+                        <span class="risk-badge"><%= risk.severity %> <%= risk.risk_type %> Risk</span>
+                        <p><strong>Reason:</strong> <%= risk.reason %></p>
+                        <p><em>"<%= risk.clause %>"</em></p>
+                    </div>
+                <% }) %>
+            </div>
+            <!-- Fairness Tab -->
+            <div id="fairness" class="tab-content" style="display:none;">
+                <h3>Bias & Fairness Scanner</h3>
+                <div class="fairness-card">
+                    <h4>Fairness Score: <%= fairness.fairness_score %> / 100</h4>
+                    <h4>Favored Party: <%= fairness.favored_party %></h4>
+                    <p><strong>Reasoning:</strong> <%= fairness.reason %></p>
+                </div>
+            </div>
+            <!-- AI Lawyer Tab -->
+            <div id="lawyer" class="tab-content" style="display:none;">
+                <h3>AI Junior Lawyer</h3>
+                <div class="chat-container">
+                    <div id="chat-history" class="chat-history"></div>
+                    <form id="chat-form" class="chat-form">
+                        <input type="text" id="user-question" placeholder="Ask a question..." required>
+                        <button type="submit">Ask</button>
+                        <textarea id="contract-text" style="display: none;"><%= contractText %></textarea>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
